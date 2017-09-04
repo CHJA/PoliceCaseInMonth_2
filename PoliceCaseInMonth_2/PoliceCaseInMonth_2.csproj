@@ -84,6 +84,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CaseInMonth.cs" />
+    <Compile Include="DataSource.cs" />
     <Compile Include="HRVUserControl.xaml.cs">
       <DependentUpon>HRVUserControl.xaml</DependentUpon>
     </Compile>

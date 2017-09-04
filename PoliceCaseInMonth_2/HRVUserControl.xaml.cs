@@ -68,7 +68,7 @@ namespace HighResolutionApps.VisualControls.PoliceCaseInMonth_2
                     dataTable.Columns.Add("CriminalCases", typeof(Int32));
                     dataTable.Columns.Add("SecurityCases", typeof(Int32));
 
-                    //dataTable.Rows.Add(0, 600, 1000, 2600, 4400);
+                    dataTable.Rows.Add(1, -1, 1000, 2600, 4400);
                     dataTable.Rows.Add(2, -1, -1, -1, 4200);
                     dataTable.Rows.Add(4, -1, -1, 3300, -1);
                     //dataTable.Rows.Add(5, 1100, -1, -1, -1);
@@ -87,7 +87,7 @@ namespace HighResolutionApps.VisualControls.PoliceCaseInMonth_2
                     //dataTable.Rows.Add(26, 1700, -1, -1, -1);
                     dataTable.Rows.Add(27, -1, 1200, -1, 2850);
                     dataTable.Rows.Add(28, -1, -1, 2200, -1);
-                    dataTable.Rows.Add(29, -1, -1, -1, 3700);
+                    dataTable.Rows.Add(29, -1, 0, -1, 3700);
                     //dataTable.Rows.Add(30, 400, 500, 2500, 3650);
                     //dataTable.Rows.Add(31, 300, 400, 2800, 3300);
 
@@ -139,8 +139,8 @@ namespace HighResolutionApps.VisualControls.PoliceCaseInMonth_2
                     }
                 }
                 //dayList.Sort();
-                xMax = dateList.Max();
-                xMin = dateList.Min();
+                //xMax = dateList.Max();
+                //xMin = dateList.Min();
 
                 List<int> caseList = new List<int>();
                 for (int i = 0; i < dt.Rows.Count; i++)
@@ -703,7 +703,9 @@ namespace HighResolutionApps.VisualControls.PoliceCaseInMonth_2
                 if (CurrentRunderUnitEnvironment.Mode == EnvironmentMode.Designer)
                 {
                     // 初始化数据
-                    InitInputDataTable(m_InputDataTable);
+                    DataSource data = new DataSource();
+                    m_InputDataTable = data.CreateDataTable();
+                    //InitInputDataTable(m_InputDataTable);
                     // 绘制自定义数据
                     InputDataTable2Chart(m_InputDataTable);
 
