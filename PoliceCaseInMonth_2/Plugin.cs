@@ -41,7 +41,7 @@ namespace HighResolutionApps.VisualControls.PoliceCaseInMonth_2
         /// </summary>
         public string PluginId
         {
-            get { return "demo_controls_plug"; }
+            get { return "HRVPoliceCaseInMonthControl_ZZGA_controls_plug"; }
         }
 
         /// <summary>

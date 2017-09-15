@@ -1,0 +1,25 @@
+D:\HRV_2.0\Apps\VisualControls\VisualControls.HRVUserControl\VisualControls.HRVUserControl.dll.config
+D:\HRV_2.0\Apps\VisualControls\VisualControls.HRVUserControl\VisualControls.HRVUserControl.dll
+D:\HRV_2.0\Apps\VisualControls\VisualControls.HRVUserControl\VisualControls.HRVUserControl.pdb
+D:\HRV_2.0\Apps\VisualControls\VisualControls.HRVUserControl\VisualControls.HRVUserControl.XML
+E:\CODING\visual studio 2017\Projects\PoliceCaseInMonth_2\PoliceCaseInMonth_2\obj\Debug\PoliceCaseInMonth_2.csprojResolveAssemblyReference.cache
+E:\CODING\visual studio 2017\Projects\PoliceCaseInMonth_2\PoliceCaseInMonth_2\obj\Debug\VisualControls.HRV1PoliceCaseInMonthControl_ZZGA_MarkupCompile.cache
+E:\CODING\visual studio 2017\Projects\PoliceCaseInMonth_2\PoliceCaseInMonth_2\obj\Debug\HRVUserControl.baml
+E:\CODING\visual studio 2017\Projects\PoliceCaseInMonth_2\PoliceCaseInMonth_2\obj\Debug\HRVUserControl.g.cs
+E:\CODING\visual studio 2017\Projects\PoliceCaseInMonth_2\PoliceCaseInMonth_2\obj\Debug\VisualControls.HRV1PoliceCaseInMonthControl_ZZGA.g.resources
+E:\CODING\visual studio 2017\Projects\PoliceCaseInMonth_2\PoliceCaseInMonth_2\obj\Debug\VisualControls.HRV1PoliceCaseInMonthControl_ZZGA.dll.licenses
+E:\CODING\visual studio 2017\Projects\PoliceCaseInMonth_2\PoliceCaseInMonth_2\obj\Debug\PoliceCaseInMonth_2.csproj.CoreCompileInputs.cache
+E:\CODING\visual studio 2017\Projects\PoliceCaseInMonth_2\PoliceCaseInMonth_2\obj\Debug\VisualControls.HRV1PoliceCaseInMonthControl_ZZGA.dll
+E:\CODING\visual studio 2017\Projects\PoliceCaseInMonth_2\PoliceCaseInMonth_2\obj\Debug\VisualControls.HRV1PoliceCaseInMonthControl_ZZGA.pdb
+D:\HRV_2.0\Apps\VisualControls\VisualControls.HRVControl_ZZGA\VisualControls.HRV1PoliceCaseInMonthControl_ZZGA.dll.config
+D:\HRV_2.0\Apps\VisualControls\VisualControls.HRVControl_ZZGA\VisualControls.HRV1PoliceCaseInMonthControl_ZZGA.dll
+D:\HRV_2.0\Apps\VisualControls\VisualControls.HRVControl_ZZGA\VisualControls.HRV1PoliceCaseInMonthControl_ZZGA.pdb
+E:\CODING\visual studio 2017\Projects\PoliceCaseInMonth_2_v2\PoliceCaseInMonth_2\obj\Debug\HRVUserControl.baml
+E:\CODING\visual studio 2017\Projects\PoliceCaseInMonth_2_v2\PoliceCaseInMonth_2\obj\Debug\HRVUserControl.g.cs
+E:\CODING\visual studio 2017\Projects\PoliceCaseInMonth_2_v2\PoliceCaseInMonth_2\obj\Debug\VisualControls.HRV1PoliceCaseInMonthControl_ZZGA_MarkupCompile.cache
+E:\CODING\visual studio 2017\Projects\PoliceCaseInMonth_2_v2\PoliceCaseInMonth_2\obj\Debug\VisualControls.HRV1PoliceCaseInMonthControl_ZZGA.g.resources
+E:\CODING\visual studio 2017\Projects\PoliceCaseInMonth_2_v2\PoliceCaseInMonth_2\obj\Debug\VisualControls.HRV1PoliceCaseInMonthControl_ZZGA.dll.licenses
+E:\CODING\visual studio 2017\Projects\PoliceCaseInMonth_2_v2\PoliceCaseInMonth_2\obj\Debug\PoliceCaseInMonth_2.csproj.CoreCompileInputs.cache
+E:\CODING\visual studio 2017\Projects\PoliceCaseInMonth_2_v2\PoliceCaseInMonth_2\obj\Debug\VisualControls.HRV1PoliceCaseInMonthControl_ZZGA.dll
+E:\CODING\visual studio 2017\Projects\PoliceCaseInMonth_2_v2\PoliceCaseInMonth_2\obj\Debug\VisualControls.HRV1PoliceCaseInMonthControl_ZZGA.pdb
+E:\CODING\visual studio 2017\Projects\PoliceCaseInMonth_2_v2\PoliceCaseInMonth_2\obj\Debug\PoliceCaseInMonth_2.csprojResolveAssemblyReference.cache

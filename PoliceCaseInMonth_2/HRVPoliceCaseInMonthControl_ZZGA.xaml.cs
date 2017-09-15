@@ -12,6 +12,7 @@ using System.Collections;
 using System.Linq;
 using System.Collections.Generic;
 using HRVPoliceCaseInMonthControl_ZZGA;
+using Telerik.Windows.Data;
 
 namespace HighResolutionApps.VisualControls.PoliceCaseInMonth_2
 {
@@ -40,64 +41,53 @@ namespace HighResolutionApps.VisualControls.PoliceCaseInMonth_2
 
         // ===================================================================================================================
         // 共有四类警情：
-        // 刑事警情，CriminalCases，黄色曲线
-        // 治安警情，SecurityCases，蓝色曲线
-        // 交通事故，TrafficCases，红色曲线
-        // 群众求助，ForHelpCases，绿色曲线
+        // 当月刑事，CriminalCases，黄色曲线
+        // 当月交通，SecurityCases，蓝色曲线
+        // 去年刑事，TrafficCases，红色曲线
+        // 去年交通，ForHelpCases，绿色曲线
 
 
         /// <summary>
         /// 创建自定义数据，填充到dataTable
         /// </summary>
         /// <param name="dataTable"></param>        
-        public void InitInputDataTable(DataTable dataTable)
+        public void InitInputDataTable()
         {
-
+            SystemHelper.logger.LogDebug("调试信息=====> InitInputDataTable 版本：2017年9月11日修改<=====");
             try
             {
-                if (dataTable == null || dataTable.Rows.Count == 0)
-                {
-                    dataTable = new DataTable
-                    {
-                        TableName = "YDJQTB"
-                    };
+                DataTable dataTable = new DataTable { TableName = "YDJQTB" };
 
-                    dataTable.Columns.Add("date", typeof(Int32));
-                    dataTable.Columns.Add("TrafficCases", typeof(Int32));
-                    dataTable.Columns.Add("ForHelpCases", typeof(Int32));
-                    dataTable.Columns.Add("CriminalCases", typeof(Int32));
-                    dataTable.Columns.Add("SecurityCases", typeof(Int32));
+                dataTable.Columns.Add("date", typeof(Int32));
+                dataTable.Columns.Add("criminal", typeof(Int32));
+                dataTable.Columns.Add("traffic", typeof(Int32));
+                dataTable.Columns.Add("crim_lastyear", typeof(Int32));
+                dataTable.Columns.Add("traf_lastyear", typeof(Int32));
 
-                    dataTable.Rows.Add(1, -1, 1000, 2600, 4400);
-                    dataTable.Rows.Add(2, -1, -1, -1, 4200);
-                    dataTable.Rows.Add(4, -1, -1, 3300, -1);
-                    //dataTable.Rows.Add(5, 1100, -1, -1, -1);
-                    dataTable.Rows.Add(6, -1, -1, -1, 5300);
-                    //dataTable.Rows.Add(8, -1, 2000, -1, -1);
-                    dataTable.Rows.Add(9, -1, -1, 2700, -1);
-                    dataTable.Rows.Add(11, -1, -1, -1, 2800);
-                    dataTable.Rows.Add(12, -1, -1, 3500, -1);
-                    dataTable.Rows.Add(13, -1, -1, -1, -1);
-                    dataTable.Rows.Add(15, -1, -1, -1, 3800);
-                    dataTable.Rows.Add(18, -1, -1, 2300, -1);
-                    //dataTable.Rows.Add(19, -1, 1000, -1, 3400);
-                    dataTable.Rows.Add(21, 300, -1, -1, -1);
-                    dataTable.Rows.Add(23, -1, -1, 2800, 4500);
-                    dataTable.Rows.Add(25, -1, -1, -1, -1);
-                    //dataTable.Rows.Add(26, 1700, -1, -1, -1);
-                    dataTable.Rows.Add(27, -1, 1200, -1, 2850);
-                    dataTable.Rows.Add(28, -1, -1, 2200, -1);
-                    dataTable.Rows.Add(29, -1, 0, -1, 3700);
-                    //dataTable.Rows.Add(30, 400, 500, 2500, 3650);
-                    //dataTable.Rows.Add(31, 300, 400, 2800, 3300);
+                dataTable.Rows.Add(1, -1, 1000, 2600, 4400);
+                dataTable.Rows.Add(2, -1, -1, -1, 4200);
+                dataTable.Rows.Add(4, -1, -1, 3300, -1);
+                dataTable.Rows.Add(5, 1100, -1, -1, -1);
+                dataTable.Rows.Add(6, -1, -1, -1, 5300);
+                dataTable.Rows.Add(8, -1, 2000, -1, -1);
+                dataTable.Rows.Add(9, -1, -1, 2700, -1);
+                dataTable.Rows.Add(11, -1, -1, -1, 2800);
+                dataTable.Rows.Add(12, -1, -1, 3500, -1);
+                dataTable.Rows.Add(13, -1, -1, -1, -1);
+                dataTable.Rows.Add(15, -1, -1, -1, 3800);
+                dataTable.Rows.Add(18, -1, -1, 2300, -1);
+                dataTable.Rows.Add(19, -1, 1000, -1, 3400);
+                dataTable.Rows.Add(21, 300, -1, -1, -1);
+                dataTable.Rows.Add(23, -1, -1, 2800, 4500);
+                dataTable.Rows.Add(25, -1, -1, -1, -1);
+                dataTable.Rows.Add(26, 1700, -1, -1, -1);
+                dataTable.Rows.Add(27, -1, 1200, -1, 2850);
+                dataTable.Rows.Add(28, -1, -1, 2200, -1);
+                dataTable.Rows.Add(29, -1, 0, -1, 3700);
+                dataTable.Rows.Add(30, 400, 500, 2500, 3650);
+                dataTable.Rows.Add(31, 300, 400, 2800, 3300);
 
-                    SystemHelper.logger.LogDebug("调试信息========================== " + "dataTable行数：" + dataTable.Rows.Count);
-                    
-                    m_InputDataTable = dataTable;
-                    SystemHelper.logger.LogDebug("调试信息========================== " + "m_Table 数据装载行数：" + m_InputDataTable.Rows.Count);
-
-                }
-
+                m_InputDataTable = dataTable;
             }
             catch (Exception ex)
             {
@@ -112,107 +102,99 @@ namespace HighResolutionApps.VisualControls.PoliceCaseInMonth_2
         /// </summary>
         void InputDataTable2Chart(DataTable dataTable)
         {
+            SystemHelper.logger.LogDebug("调试信息=====> InputDataTable2Chart 版本：2017年9月11日修改<=====");
+            if ((dataTable == null) || (dataTable.Rows.Count == 0))
+            {
+                SystemHelper.logger.LogDebug("调试信息=====> dataTable.Rows.Count=" + dataTable.Rows.Count);
+                SystemHelper.logger.LogDebug("调试信息=====> InputDataTable2Chart 没有数据-DataTable为空 <=====");
+                return;
+            }
+
             try
             {
                 // ...
-                int xMax = 30;  // x轴最大刻度
-                int xMin = 1;   // x轴最小刻度
-                int xMajorStep = 2; // x轴刻度间隔
                 int yMax = 200; // y轴最大刻度
                 int yMin = 0;   // y轴最小刻度
                 int yMajorStep = 0;    // y轴刻度间隔
-                //int seriesCount = 4;    // series个数
 
-
-                // 第一部分：整理数据
+                // 提取数据的时间点
+                DateTime timePoint = DateTime.Now;//= new DateTime(2017, 9, 5);
+                SystemHelper.logger.LogDebug("调试信息=====> " + "今日时间=" + timePoint);
+                int timeSpan = 30;
                 DataTable dt = new DataTable();
-                dt = SortTable(dataTable);  // 对dataTable按第一列date进行排序
+                dt = ExtractData(dataTable, timePoint, timeSpan); // 取30天的数据
 
-                SystemHelper.logger.LogDebug("调试信息=====> " + "修改主坐标轴准备===>>");
-
-                List<int> dateList = new List<int>();
-                for (int i = 0; i < dt.Rows.Count; i++)
-                {
-                    if (dt.Rows[i][0] != DBNull.Value && Convert.ToInt32(dt.Rows[i][0]) >= 0)
-                    {
-                        dateList.Add(Convert.ToInt32(dt.Rows[i][0]));
-                    }
-                }
-                //dayList.Sort();
-                //xMax = dateList.Max();
-                //xMin = dateList.Min();
-
-                List<int> caseList = new List<int>();
-                for (int i = 0; i < dt.Rows.Count; i++)
-                {
-                    for (int j = 1; j < dt.Columns.Count; j++)
-                    {
-                        // DBNull.Value表示数据库表中不存在的值
-                        if ( dt.Rows[i][j] != DBNull.Value && Convert.ToInt32(dt.Rows[i][j]) >= 0)
-                        {
-                            caseList.Add(Convert.ToInt32(dt.Rows[i][j]));
-                        }
-                    }
-                }                
-                //caseList.Sort();
-                yMax = (int)(caseList.Max() * 1.3);
-                //yMajorStep = (int)(yMax / 5) + 1;
-
+                // 第一部分：整理数据   
+                dt = CheckData(dt);
 
                 // 第二部分：规划chart框架，包括坐标轴最大最小值
+                yMax = (int)(GetMaxY(dt) * 1.3);
+                //yMajorStep = (int)(yMax / 5) + 1;
 
-                ScatterSplineAreaSeries scatterSplineAreaSeries = null; // 散点曲线区域
-                ScatterDataPoint scatterDataPoint = null;   // ScatterDataPoint数据点
                 // 设置坐标轴
-                HoriAxis.Maximum = xMax;
-                HoriAxis.Minimum = xMin;
-                HoriAxis.MajorStep = xMajorStep;
                 VertiAxis.Maximum = yMax;
                 VertiAxis.Minimum = yMin;
                 //VertiAxis.MajorStep = yMajorStep;
 
-                SystemHelper.logger.LogDebug("调试信息=====> " + "修改主坐标轴===>>" + "minX=" + xMin + ", maxX=" + xMax + ", maxY=" + yMax + ", YMajorStep=" + yMajorStep);
-                SystemHelper.logger.LogDebug("调试信息=====> " + "修改主坐标轴完成===>><<");
-
                 // 第三部分：加载数据
-
                 policeCasesChart.Series.Clear();
+                InitXAxis(timePoint, timeSpan);   // 初始化X轴
+
+                SplineAreaSeries splineAreaSeries = null; // 散点曲线区域
 
                 List<CaseInMonth> clist = new List<CaseInMonth>();
-
                 clist = DrillTable(dt);
-
-                SystemHelper.logger.LogDebug("调试信息=====> " + "clist = GetCaseList(DrillTable(dt))===>>clist.Count<<" + clist.Count);
+                //SystemHelper.logger.LogDebug("调试信息=====> " + "clist保存的对象个数= " + clist.Count);
                 // 按照cm均值 从大到小输出
                 for (int i = clist.Count; i > 0; i--)
                 {
-                    SystemHelper.logger.LogDebug("调试信息=====> " + "clist===>>clist.序号==<<" + clist[i-1].CaseOrder);
-
-                    scatterSplineAreaSeries = new ScatterSplineAreaSeries();
-                    foreach (KeyValuePair<int, int> kvp in clist[i-1].CaseSortedList)
+                    //SystemHelper.logger.LogDebug("调试信息=====> " + "clist=>>对象.序号= " + clist[i - 1].CaseOrder);
+                    splineAreaSeries = new SplineAreaSeries();
+                    foreach (KeyValuePair<int, int> kvp in clist[i - 1].CaseSortedList)
                     {
-                        scatterDataPoint = new ScatterDataPoint
+                        CategoricalDataPoint point = new CategoricalDataPoint()
                         {
-                            XValue = kvp.Key,
-                            YValue = kvp.Value
+                            Category = kvp.Key.ToString(),
+                            Value = kvp.Value
                         };
-
-                        scatterSplineAreaSeries.DataPoints.Add(scatterDataPoint);
+                        //SystemHelper.logger.LogDebug("调试信息=====> " + "键-值对==(" + kvp.Key + "," + kvp.Value + ")");
+                        splineAreaSeries.DataPoints.Add(point);
                     }
 
                     // 将 散点曲线区域 对象添加到 Chart中
-                    policeCasesChart.Series.Add(scatterSplineAreaSeries);
+                    policeCasesChart.Series.Add(splineAreaSeries);
                     // 绘制填充效果
-                    FillSeriesBackground(scatterSplineAreaSeries, clist[i-1].CaseOrder);
-
-                    SystemHelper.logger.LogDebug("调试信息=====> " + "加载clist中对象的序号==<<" + i);
-
+                    FillSeriesBackground(splineAreaSeries, clist[i - 1].CaseOrder);
+                    //SystemHelper.logger.LogDebug("调试信息=====> " + "加载clist中对象的序号==>" + i);
                 }
 
-                // 添加副坐标轴
-                SettingMultiAxis(scatterSplineAreaSeries, xMax, xMin, xMajorStep, yMax, yMin, yMajorStep);
+                // 添加显示副坐标轴的最后一个series
+                SplineAreaSeries endSeries = new SplineAreaSeries
+                {
+                    HorizontalAxis = new DateTimeCategoricalAxis()
+                    {
+                        VerticalLocation = AxisVerticalLocation.Top,
 
-                SystemHelper.logger.LogDebug("调试信息========== " + "图形加载完毕");
+                        LineStroke = new SolidColorBrush(Color.FromArgb(0xFF, 0x08, 0x9C, 0xFF)), // 轴线的颜色
+                        LineThickness = 3,      // 轴线的粗细
+                        MajorTickLength = 0,    // 坐标线长度
+                        ShowLabels = false,     // 不显示坐标值
+                        IsEnabled = false
+                    },
+                    VerticalAxis = new LinearAxis()
+                    {
+                        HorizontalLocation = AxisHorizontalLocation.Right,
+
+                        LineStroke = new SolidColorBrush(Color.FromArgb(0xFF, 0x08, 0x9C, 0xFF)), // 轴线的颜色
+                        LineThickness = 3,   // 轴线的粗细
+                        MajorTickLength = 0, // 坐标线长度
+                        ShowLabels = false,  // 不显示坐标值
+                        IsEnabled = false
+                    }
+                };
+                policeCasesChart.Series.Add(endSeries);
+
+                SystemHelper.logger.LogDebug("调试信息=====> " + "图形加载完毕!");
             }
             catch (Exception ex)
             {
@@ -223,82 +205,206 @@ namespace HighResolutionApps.VisualControls.PoliceCaseInMonth_2
         }
 
         /// <summary>
-        /// 
+        /// 初始化X轴
+        /// </summary>
+        /// <param name="timePoint"></param>
+        private void InitXAxis(DateTime timePoint, int span)
+        {
+            DateTime endDate = timePoint;
+            TimeSpan timeSpan = TimeSpan.FromDays(span); 
+            DateTime startDate = endDate - timeSpan;
+            string timeFormat = "Mdd";
+            SplineAreaSeries series = new SplineAreaSeries();
+
+            for (int i = 0; i < 30; i++)
+            {
+                series.DataPoints.Add(new CategoricalDataPoint() { Category = startDate.AddDays(i).ToString(timeFormat) });
+            }
+
+            policeCasesChart.Series.Add(series);
+        }
+
+        /// <summary>
+        /// 提取数据
+        /// </summary>
+        /// <param name="dt"></param>
+        /// <returns></returns>
+        private DataTable ExtractData(DataTable dt, DateTime timePoint, int span)
+        {
+            SystemHelper.logger.LogDebug("调试信息=====> " + "ExtractData <====");
+
+            DataTable table = new DataTable();
+            //DateTime latest = new DateTime(2017, 8, 31);
+            DateTime endDate = timePoint;
+            TimeSpan timeSpan = TimeSpan.FromDays(span);
+            DateTime startDate = endDate - timeSpan;
+            string timeFormat = "Mdd";
+
+            try
+            {
+                string startDateStr = startDate.ToString(timeFormat);
+                string endDateStr = endDate.ToString(timeFormat);
+
+                table = dt.Clone();
+
+                dt.Columns[0].ColumnName = "date";
+                string expr = "date>=" + startDateStr + " AND date<" + endDateStr;
+                string order = "date ASC";
+                DataRow[] foundRows = dt.Select(expr, order);
+                foreach (var r in foundRows)
+                {
+                    SystemHelper.logger.LogDebug("调试信息=====> " + "ExtractData <===row-->" + r);
+
+                    table.ImportRow(r);
+                }
+            }
+            catch (Exception ex)
+            {
+                SystemHelper.logger.LogError(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.FullName,
+                    System.Reflection.MethodBase.GetCurrentMethod().Name, ex.Message.ToString(), ex.ToString());
+            }
+
+            return table;
+        }
+
+        /// <summary>
+        /// 检查数据
+        /// </summary>
+        /// <param name="dataTable"></param>
+        /// <returns></returns>
+        private DataTable CheckData(DataTable dataTable)
+        {
+            int rows = dataTable.Rows.Count;
+            int cols = dataTable.Columns.Count;
+
+            SystemHelper.logger.LogDebug("调试信息=====> CheckData " + "检查DataTable <=====");
+
+            // dataTable 为空，返回
+            if ((dataTable == null) || (rows == 0))
+            {
+                SystemHelper.logger.LogDebug("调试信息=====> " + "没有数据！");
+                return null;
+            }
+
+            if (cols == 1)
+            {
+                SystemHelper.logger.LogDebug("调试信息=====> " + "只有一列数据！");
+                return null;
+            }
+
+            if (cols < 5)
+            {
+                SystemHelper.logger.LogDebug("调试信息=====> " + "DataTable仅有" + cols + "列数据！，需要5列数据");
+            }
+            Random r = new Random(5000);
+            try
+            {
+                for (int i = 0; i < dataTable.Rows.Count; i++)
+                {
+                    for (int j = 0; j < dataTable.Columns.Count; j++)
+                    {
+                        if ((dataTable.Rows[i][j] == DBNull.Value) || (Convert.ToInt32(dataTable.Rows[i][j]) == -1))
+                        {
+                            //dataTable.Rows[i][j] = r.Next(1000,5000);
+                            SystemHelper.logger.LogDebug("调试信息=====> " + "空值！");
+                        }
+
+                        if (Convert.ToInt32(dataTable.Rows[i][j]) < -1)
+                        {
+                            dataTable.Rows[i][j] = r.Next(1000,5000);
+                            SystemHelper.logger.LogDebug("调试信息=====> " + "负值！");
+                        }
+
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                SystemHelper.logger.LogError(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.FullName,
+                    System.Reflection.MethodBase.GetCurrentMethod().Name, ex.Message.ToString(), ex.ToString());
+            }
+
+            SystemHelper.logger.LogDebug("调试信息=====> CheckData " + "检查DataTable完成！<=====");
+            return dataTable;
+        }
+
+        private int GetMaxY(DataTable dt)
+        {
+            int max = 0;
+            List<int> caseList = new List<int>();
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                for (int j = 1; j < dt.Columns.Count; j++)
+                {
+                    // DBNull.Value表示数据库表中不存在的值
+                    if ((dt.Rows[i][j] != DBNull.Value) && (Convert.ToInt32(dt.Rows[i][j]) >= 0))
+                    {
+                        caseList.Add(Convert.ToInt32(dt.Rows[i][j]));
+                    }
+                }
+            }
+            max = caseList.Max();
+
+            return max;
+        }
+
+        /// <summary>
+        /// DrillTable
         /// </summary>
         /// <param name="dataTable"></param>
         /// <returns></returns>
         private List<CaseInMonth> DrillTable(DataTable dataTable)
         {
-            // dataTable 为空，返回
-            if (dataTable == null)
-            {
-                SystemHelper.logger.LogDebug("调试信息==========DrillTable " + "dataTable is NULL");
-                return null;
-            }
+            SystemHelper.logger.LogDebug("调试信息=====> <=====");
 
-            List<CaseInMonth> cmList = new List<CaseInMonth>();
+            List<CaseInMonth> list = new List<CaseInMonth>();
 
-            for (int j = 1; j < dataTable.Columns.Count; j++)
-            {
-                // sortedList 将dataTable的第一列作为键，第2-5列作为值 进行存储
-                SortedList<int,int> sortedList = new SortedList<int,int>();
-                for (int i = 0; i < dataTable.Rows.Count; i++)
-                    if (dataTable.Rows[i][j] != DBNull.Value && Convert.ToInt32(dataTable.Rows[i][j]) != -1)
-                    {
-                        try
-                        {
-                            sortedList.Add(Convert.ToInt32(dataTable.Rows[i][0]), Convert.ToInt32(dataTable.Rows[i][j]));
-
-                        }
-                        catch (ArgumentException)
-                        {
-                            SystemHelper.logger.LogDebug("调试信息=====>dataTable 第"+(i+1)+"行第"+0+"列的数据"+ dataTable.Rows[i][0].ToString() + "已经存在！");
-                        }
-                    }
-                sortedList.TrimExcess();
-
-                CaseInMonth cm = new CaseInMonth(j, sortedList);
-                cmList.Add(cm);
-                // 将cm对象排序
-                cmList.Sort((x, y) => 
-                {
-                    return (x.Average.CompareTo(y.Average) != 0) ? x.Average.CompareTo(y.Average) : x.CaseOrder.CompareTo(y.CaseOrder);
-                });
-
-            }
-            cmList.TrimExcess();
-            SystemHelper.logger.LogDebug("调试信息=====> " + "ortedList<int,int> sortedList应该是4===>>cmList.Count<<" + cmList.Count);
-
-            return cmList;
-
-        }
-
-        /// <summary>
-        /// 对DataTable排序
-        /// </summary>
-        /// <param name="dataTable"></param>
-        private DataTable SortTable(DataTable dataTable)
-        {
-            if (dataTable == null)
-            {
-                SystemHelper.logger.LogDebug("调试信息==========SortTable " + "dataTable is NULL");
-                return null;
-            }
-            DataTable t = dataTable.Clone();
             try
             {
-                if (dataTable.Rows.Count > 0)
+                if ((dataTable == null) || (dataTable.Rows.Count == 0))
                 {
-                    // 使用DataTable的Select方法对DataTable排序
-                    string sortOrder = dataTable.Columns[0].ColumnName + " ASC";
-                    DataRow[] rows = dataTable.Select("", sortOrder);
-
-                    t.Clear();
-                    foreach (var r in rows)
-                        t.ImportRow(r);
-
-                    dataTable = t;
+                    SystemHelper.logger.LogDebug("调试信息=====> " + "没有数据！");
+                    return null;
                 }
+
+                int cols = dataTable.Columns.Count;
+                //SystemHelper.logger.LogDebug("调试信息=====> " + "DataTable现有 " + cols + " 列数据，实际需要5列数据！");
+
+                for (int j = 1; j < dataTable.Columns.Count; j++)
+                {
+                    SortedList<int, int> sortedList = new SortedList<int, int>();
+                    for (int i = 0; i < dataTable.Rows.Count; i++)
+                    {
+                        if ((dataTable.Rows[i][j] != DBNull.Value) && (Convert.ToInt32(dataTable.Rows[i][j]) != -1))
+                        {
+                            try
+                            {
+                                sortedList.Add(Convert.ToInt32(dataTable.Rows[i][0]), Convert.ToInt32(dataTable.Rows[i][j]));
+
+                            }
+                            catch (ArgumentException)
+                            {
+                                SystemHelper.logger.LogDebug("调试信息=====> 数据表 第" + (i + 1)
+                                    + "行第" + 1 + "列的数据" + dataTable.Rows[i][0].ToString() + "已经存在，日期重复！");
+                                SystemHelper.logger.LogDebug("调试信息=====> 跳过本行数据！");
+                                continue; // 跳过本行数据
+                            }
+                        }
+                    }
+                    sortedList.TrimExcess();
+
+                    CaseInMonth cm = new CaseInMonth(j, sortedList);
+                    list.Add(cm);
+                    // 将cm对象排序
+                    list.Sort((x, y) =>
+                    {
+                        return (x.Average.CompareTo(y.Average) != 0) ? x.Average.CompareTo(y.Average) : x.CaseOrder.CompareTo(y.CaseOrder);
+                    });
+
+                }
+                list.TrimExcess();
+                //SystemHelper.logger.LogDebug("调试信息=====> "
+                //    + "链表List保存的CaseInMonth对象的个数为：" + list.Count + ",应该为 " + (cols - 1) + " 个对象");
 
             }
             catch (Exception ex)
@@ -306,8 +412,8 @@ namespace HighResolutionApps.VisualControls.PoliceCaseInMonth_2
                 SystemHelper.logger.LogError(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.FullName,
                     System.Reflection.MethodBase.GetCurrentMethod().Name, ex.Message.ToString(), ex.ToString());
             }
-            SystemHelper.logger.LogDebug("调试信息========== " + "dataTable排序完成");
-            return t;
+
+            return list;
         }
 
         /// <summary>
@@ -315,15 +421,17 @@ namespace HighResolutionApps.VisualControls.PoliceCaseInMonth_2
         /// </summary>
         /// <param name="series"></param>
         /// <param name="caseSort"></param>
-        private static void FillSeriesBackground(ScatterSplineAreaSeries series, int caseSort)
+        private static void FillSeriesBackground(SplineAreaSeries series, int caseSort)
         {
             try
             {
                 // 画刷
-                LinearGradientBrush brush = new LinearGradientBrush();
-                // 垂直渐变
-                brush.EndPoint = new Point(0.5, 1);
-                brush.StartPoint = new Point(0.5, 0);
+                LinearGradientBrush brush = new LinearGradientBrush
+                {
+                    // 垂直渐变
+                    EndPoint = new Point(0.5, 1),
+                    StartPoint = new Point(0.5, 0)
+                };
 
                 series.StrokeThickness = 2; // 设置 线 的粗细为2
 
@@ -368,45 +476,6 @@ namespace HighResolutionApps.VisualControls.PoliceCaseInMonth_2
 
         }
 
-        /// <summary>
-        /// 设置单个坐标轴
-        /// </summary>
-        /// <param name="linearAxis"></param>
-        /// <param name="max"></param>
-        /// <param name="min"></param>
-        /// <param name="majorStep"></param>
-        void SettingAxis(LinearAxis linearAxis,int max, int min, int majorStep)
-        {
-            linearAxis.Maximum = max;   
-            linearAxis.Minimum = min;
-            linearAxis.MajorStep = majorStep;
-            linearAxis.LineStroke = new SolidColorBrush(Color.FromArgb(0xFF, 0x08, 0x9C, 0xFF)); // 轴线的颜色
-            linearAxis.LineThickness = 3;   // 轴线的粗细
-            linearAxis.MajorTickLength = 0; // 坐标线长度
-            linearAxis.ShowLabels = false;  // 不显示坐标值
-            linearAxis.IsEnabled = false;                
-        }
-
-        /// <summary>
-        /// 设置副坐标轴
-        /// </summary>
-        /// <param name="series"></param>
-        /// <param name="xmax"></param>
-        /// <param name="xmin"></param>
-        /// <param name="xstep"></param>
-        /// <param name="ymax"></param>
-        /// <param name="ymin"></param>
-        /// <param name="ystep"></param>
-        void SettingMultiAxis(ScatterSplineAreaSeries series,int xmax,int xmin,int xstep,int ymax,int ymin,int ystep)
-        {
-            LinearAxis horizLinearAxis = new LinearAxis() { VerticalLocation = AxisVerticalLocation.Top };          // 横轴
-            LinearAxis vertiLinearAxis = new LinearAxis() { HorizontalLocation = AxisHorizontalLocation.Right };    // 纵轴
-            SettingAxis(horizLinearAxis, xmax, xmin, xstep);
-            SettingAxis(vertiLinearAxis, ymax, ymin, ystep);
-            series.HorizontalAxis = horizLinearAxis;
-            series.VerticalAxis = vertiLinearAxis;
-        }
-
 
         #region  所需属性
 
@@ -414,15 +483,15 @@ namespace HighResolutionApps.VisualControls.PoliceCaseInMonth_2
         /// <summary>
         /// 
         /// </summary>
-        public static readonly DependencyProperty TitleFontFamilyProperty = DependencyProperty.Register("TitleFontFamily", typeof(enum_MyFontFamily), 
-            typeof(PoliceCaseInMonth_2), new PropertyMetadata(enum_MyFontFamily.宋体, OnTitleFontFamilyChanged));
+        public static readonly DependencyProperty TitleFontFamilyProperty = DependencyProperty.Register("TitleFontFamily", typeof(Enum_MyFontFamily), 
+            typeof(PoliceCaseInMonth_2), new PropertyMetadata(Enum_MyFontFamily.宋体, OnTitleFontFamilyChanged));
         /// <summary>
         /// 
         /// </summary>
-        public enum_MyFontFamily TitleFontFamily
+        public Enum_MyFontFamily TitleFontFamily
         {
             set { this.SetValue(TitleFontFamilyProperty, value); }
-            get { return (enum_MyFontFamily)this.GetValue(TitleFontFamilyProperty); }
+            get { return (Enum_MyFontFamily)this.GetValue(TitleFontFamilyProperty); }
         }
         /// <summary>
         /// 
@@ -522,7 +591,7 @@ namespace HighResolutionApps.VisualControls.PoliceCaseInMonth_2
         /// <summary>
         /// 字体
         /// </summary>
-        public enum enum_MyFontFamily
+        public enum Enum_MyFontFamily
         {
             ///
             微软雅黑,
@@ -612,11 +681,12 @@ namespace HighResolutionApps.VisualControls.PoliceCaseInMonth_2
                 //调用绘制画面方法
                 if (InputDataTable != null)
                 {
+                    SystemHelper.logger.LogDebug("调试信息=====> ReRenderData <=====");
                     InputDataTable2Chart(InputDataTable);
                 }
                 else
                 {
-                    SystemHelper.logger.LogDebug("调试信息========== " + "InputDataTable未绑定数据");
+                    SystemHelper.logger.LogDebug("调试信息=====> " + "InputDataTable未绑定数据！");
                 }
 
             }
@@ -702,13 +772,13 @@ namespace HighResolutionApps.VisualControls.PoliceCaseInMonth_2
             {
                 if (CurrentRunderUnitEnvironment.Mode == EnvironmentMode.Designer)
                 {
+                    SystemHelper.logger.LogDebug("调试信息=====> HRV1PoliceCaseInMonthControl_ZZGA 版本：2017年9月11日修改<=====");
                     // 初始化数据
                     DataSource data = new DataSource();
                     m_InputDataTable = data.CreateDataTable();
                     //InitInputDataTable(m_InputDataTable);
                     // 绘制自定义数据
                     InputDataTable2Chart(m_InputDataTable);
-
                 }
                 GC.Collect();   // 强制内存回收
                 // 渲染成功后
@@ -761,7 +831,7 @@ namespace HighResolutionApps.VisualControls.PoliceCaseInMonth_2
         /// </summary>
         public string ControlGUID
         {
-            get { return "9FE1E500-039E-41F7-8338-123D9D52CD9C"; }
+            get { return "A9E4BD9A-C019-460D-8962-ED81CD8DF51A"; }
         }
 
 
@@ -771,7 +841,7 @@ namespace HighResolutionApps.VisualControls.PoliceCaseInMonth_2
         /// </summary>
         public string ControlName
         {
-            get { return "组件名称：请同步修改wrapper中的组件名称保持一致"; }
+            get { return "1.月度警情同比走势"; }
         }
 
 

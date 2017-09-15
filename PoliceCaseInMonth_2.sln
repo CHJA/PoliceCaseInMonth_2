@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26430.12
+VisualStudioVersion = 15.0.26730.8
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PoliceCaseInMonth_2", "PoliceCaseInMonth_2\PoliceCaseInMonth_2.csproj", "{9B8249BD-1E03-4435-89E6-A772F98A8CB1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HRVPoliceCaseInMonthControl_ZZGA", "PoliceCaseInMonth_2\HRVPoliceCaseInMonthControl_ZZGA.csproj", "{9B8249BD-1E03-4435-89E6-A772F98A8CB1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -18,5 +18,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7BD2B9DA-CA93-402B-80F3-64BADDEC5445}
 	EndGlobalSection
 EndGlobal

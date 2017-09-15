@@ -71,6 +71,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>D:\HRV_2.0\APPS\Designer\Telerik.Windows.Controls.Chart.dll</HintPath>
     </Reference>
+    <Reference Include="Telerik.Windows.Data, Version=2015.2.728.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\HRV_2.0\APPS\Designer\Telerik.Windows.Data.dll</HintPath>
+    </Reference>
     <Reference Include="UIAutomationProvider" />
     <Reference Include="VisualContorlBase, Version=1.5.1.26064, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -85,15 +89,15 @@
   <ItemGroup>
     <Compile Include="CaseInMonth.cs" />
     <Compile Include="DataSource.cs" />
-    <Compile Include="HRVUserControl.xaml.cs">
-      <DependentUpon>HRVUserControl.xaml</DependentUpon>
+    <Compile Include="HRVPoliceCaseInMonthControl_ZZGA.xaml.cs">
+      <DependentUpon>HRVPoliceCaseInMonthControl_ZZGA.xaml</DependentUpon>
     </Compile>
-    <Compile Include="HRVUserControlWrappers.cs" />
+    <Compile Include="HRVPoliceCaseInMonthControl_ZZGAWrappers.cs" />
     <Compile Include="Plugin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="HRVUserControl.xaml">
+    <Page Include="HRVPoliceCaseInMonthControl_ZZGA.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
