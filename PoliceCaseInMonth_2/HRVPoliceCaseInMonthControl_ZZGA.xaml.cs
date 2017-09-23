@@ -105,7 +105,7 @@ namespace HighResolutionApps.VisualControls.PoliceCaseInMonth_2
             SystemHelper.logger.LogDebug("调试信息=====> InputDataTable2Chart 版本：2017年9月11日修改<=====");
             if ((dataTable == null) || (dataTable.Rows.Count == 0))
             {
-                SystemHelper.logger.LogDebug("调试信息=====> dataTable.Rows.Count=" + dataTable.Rows.Count);
+                //SystemHelper.logger.LogDebug("调试信息=====> dataTable.Rows.Count=" + dataTable.Rows.Count);
                 SystemHelper.logger.LogDebug("调试信息=====> InputDataTable2Chart 没有数据-DataTable为空 <=====");
                 return;
             }
@@ -117,10 +117,10 @@ namespace HighResolutionApps.VisualControls.PoliceCaseInMonth_2
                 int yMin = 0;   // y轴最小刻度
                 int yMajorStep = 0;    // y轴刻度间隔
 
-                // 提取数据的时间点
+                // 创建提取数据的时间点
                 DateTime timePoint = DateTime.Now;//= new DateTime(2017, 9, 5);
                 SystemHelper.logger.LogDebug("调试信息=====> " + "今日时间=" + timePoint);
-                int timeSpan = 30;
+                int timeSpan = 31;
                 DataTable dt = new DataTable();
                 dt = ExtractData(dataTable, timePoint, timeSpan); // 取30天的数据
 
@@ -216,7 +216,7 @@ namespace HighResolutionApps.VisualControls.PoliceCaseInMonth_2
             string timeFormat = "Mdd";
             SplineAreaSeries series = new SplineAreaSeries();
 
-            for (int i = 0; i < 30; i++)
+            for (int i = 0; i < span; i++)
             {
                 series.DataPoints.Add(new CategoricalDataPoint() { Category = startDate.AddDays(i).ToString(timeFormat) });
             }
@@ -274,17 +274,21 @@ namespace HighResolutionApps.VisualControls.PoliceCaseInMonth_2
         /// <returns></returns>
         private DataTable CheckData(DataTable dataTable)
         {
-            int rows = dataTable.Rows.Count;
-            int cols = dataTable.Columns.Count;
-
             SystemHelper.logger.LogDebug("调试信息=====> CheckData " + "检查DataTable <=====");
 
-            // dataTable 为空，返回
-            if ((dataTable == null) || (rows == 0))
+            if (dataTable == null)
+            {
+                SystemHelper.logger.LogDebug("调试信息=====> " + "DataTable is Null！");
+                return null;
+            }
+
+            if (dataTable.Rows.Count == 0)
             {
                 SystemHelper.logger.LogDebug("调试信息=====> " + "没有数据！");
                 return null;
             }
+
+            int cols = dataTable.Columns.Count;
 
             if (cols == 1)
             {
@@ -296,7 +300,7 @@ namespace HighResolutionApps.VisualControls.PoliceCaseInMonth_2
             {
                 SystemHelper.logger.LogDebug("调试信息=====> " + "DataTable仅有" + cols + "列数据！，需要5列数据");
             }
-            Random r = new Random(5000);
+
             try
             {
                 for (int i = 0; i < dataTable.Rows.Count; i++)
@@ -305,13 +309,12 @@ namespace HighResolutionApps.VisualControls.PoliceCaseInMonth_2
                     {
                         if ((dataTable.Rows[i][j] == DBNull.Value) || (Convert.ToInt32(dataTable.Rows[i][j]) == -1))
                         {
-                            //dataTable.Rows[i][j] = r.Next(1000,5000);
                             SystemHelper.logger.LogDebug("调试信息=====> " + "空值！");
                         }
 
                         if (Convert.ToInt32(dataTable.Rows[i][j]) < -1)
                         {
-                            dataTable.Rows[i][j] = r.Next(1000,5000);
+                            dataTable.Rows[i][j] = 0;
                             SystemHelper.logger.LogDebug("调试信息=====> " + "负值！");
                         }
 
@@ -361,16 +364,21 @@ namespace HighResolutionApps.VisualControls.PoliceCaseInMonth_2
 
             try
             {
-                if ((dataTable == null) || (dataTable.Rows.Count == 0))
+                if (dataTable == null)
+                {
+                    SystemHelper.logger.LogDebug("调试信息=====> " + "空表！");
+                    return null;
+                }
+
+                if (dataTable.Rows.Count == 0)
                 {
                     SystemHelper.logger.LogDebug("调试信息=====> " + "没有数据！");
                     return null;
                 }
 
                 int cols = dataTable.Columns.Count;
-                //SystemHelper.logger.LogDebug("调试信息=====> " + "DataTable现有 " + cols + " 列数据，实际需要5列数据！");
 
-                for (int j = 1; j < dataTable.Columns.Count; j++)
+                for (int j = 1; j < cols; j++)
                 {
                     SortedList<int, int> sortedList = new SortedList<int, int>();
                     for (int i = 0; i < dataTable.Rows.Count; i++)
